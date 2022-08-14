@@ -38,5 +38,3 @@ drush-backups
 /private_files/
 .vscode
 _db
-*.sql
-*.sql.gz
