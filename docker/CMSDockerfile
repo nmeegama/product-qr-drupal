@@ -35,6 +35,16 @@ pdo_mysql \
 && cp $PHP_INI_DIR/php.ini $PHP_INI_DIR/conf.d/docker-php-ext-cli.ini \
 #chaning memory limit for php cli
 && sed -i 's/128M/512M/g' $PHP_INI_DIR/conf.d/docker-php-ext-cli.ini
+
+RUN apk add imagemagick
+RUN apk add imagemagick-dev
+
+RUN apk add --update --no-cache autoconf g++ imagemagick-dev libtool make pcre-dev \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && apk del autoconf g++ libtool make pcre-dev
+
+
 COPY ./docker/php/www.conf /usr/local/etc/php-fpm.d/
 COPY ./docker/php/php-fpm.conf /user/local/etc/php-fpm.conf
 COPY ./docker/php/uploads.ini $PHP_INI_DIR/conf.d/
