@@ -1,0 +1,14 @@
+uuid: ad5b97c8-f0cf-4d49-a981-9e35a1bf2556
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Website feedback'
+recipients:
+  - nmeegama@gmail.com
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''
