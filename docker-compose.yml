@@ -1,0 +1,27 @@
+version: '3'
+services:
+  cms:
+    build:
+      context: .
+      dockerfile: docker/CMSDockerfile
+      target: dev
+    volumes:
+      - ./:/var/www/html:delegated
+    tmpfs: /etc/nginx/pid
+    ports:
+      - 88:80
+    environment:
+      XDEBUG_CONFIG: 'remote_host=host.docker.internal'
+      PHP_IDE_CONFIG: 'serverName=drupal.local'
+      IDE_KEY: 'PHPSTORM'
+  db:
+    image: mariadb
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
